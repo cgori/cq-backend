@@ -1,24 +1,11 @@
 const repository = require('../repository/user');
+
 const controller = {};
 
-// Get user
-controller.get = (req, res) => {
-    repository.getUser(req.params.id);
-};
+controller.getUser = async (req, res) => {
+    const user = await repository.getUserByUsername(req.params.username);
 
-// Create user
-controller.create = (req, res) => {
-    // your code...
-};
-
-// Update user
-controller.update = (req, res) => {
-    // your code...
-};
-
-// Delete user
-controller.delete = (req, res) => {
-    // your code...
+    res.json(user);
 };
 
 module.exports = controller;
