@@ -15,8 +15,8 @@ repository.updateUser = (id, data) => {
     return mongoose.findOneAndUpdate({ id }, data);
 };
 
-repository.deleteUser = (id) => {
-    return mongoose.findOneAndDelete({ id });
+repository.getUserByUsername = (username) => {
+    return User.findOne({ username }).catch((error) => ({ error }));
 };
 
 module.exports = repository;

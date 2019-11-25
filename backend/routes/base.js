@@ -7,7 +7,6 @@ router.get('/ping', (req, res) => {
 });
 
 router.use('/user', require('./user'));
-router.use('/post', require('./post'));
 
 router.get('*', (req, res) => res.status(404).json({ error: 'Endpoint not found.' }));
 
