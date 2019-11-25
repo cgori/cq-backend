@@ -1,15 +1,13 @@
 const mongoose = require('mongoose');
-const User = require('../models/user');
+const user = require('../models/user');
 const repository = {};
 
 repository.getUser = async (userName) => {
-    console.log(userName);
-    const data = await User.findOne({ username: userName });
-
-    console.log(data);
+    return user.findOne({'username': userName }).catch((error) => ({ error }));
 };
 
-repository.createUser = (id, data) => {
+repository.createUser = async(id, data) => {
+
     return mongoose.create({ id, data });
 };
 

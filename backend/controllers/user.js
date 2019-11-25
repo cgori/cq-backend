@@ -2,8 +2,9 @@ const repository = require('../repository/user');
 const controller = {};
 
 // Get user
-controller.get = (req, res) => {
-    repository.getUser(req.params.id);
+controller.get = async (req, res) => {
+    const user = await repository.getUser(req.params.id);
+    res.json(user);
 };
 
 // Create user
