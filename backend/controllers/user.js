@@ -1,18 +1,23 @@
 const repository = require('../repository/user');
 const controller = {};
-
+const user = require('../models/user');
 // Get user
-controller.get = async (req, res) => {
-    const user = await repository.getUser(req.params.id);
+controller.getUser = async (req, res) => {
+    const user = await repository.getUserByUsername(req.params.username);
     res.json(user);
 };
 
-const controller = {};
-
-controller.getUser = async (req, res) => {
-    const user = await repository.getUserByUsername(req.params.username);
+controller.getUsers = async (req, res) => {
+    const user = await repository.getAllUsers(req.params.username);
 
     res.json(user);
+};
+
+controller.registerUser = async (req, res) => {
+    const username = req.body.username,
+        password = req.body.password;
+    const auth = await repository.authUser(username, password);
+    res.json(auth);
 };
 
 module.exports = controller;
