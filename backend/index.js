@@ -5,6 +5,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const routes = require('./routes/base');
+const jwt = require('jsonwebtoken');
+const middleware = require('./services/middleware');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -12,7 +14,6 @@ app.use(cors({ credentials: true, origin: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api', routes);
 app.use(bodyParser.json());
-
 const database = require('./services/mongodb');
 database.connection.once('open', () => start());
 
