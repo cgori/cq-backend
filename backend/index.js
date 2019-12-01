@@ -18,6 +18,5 @@ database.connection.once('open', () => start());
 
 const start = () => {
     config.port = config.port || 3000;
-
     app.listen(config.port, () => console.log(`Listening on port ${config.port}.`));
 };
