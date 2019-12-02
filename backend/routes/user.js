@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const mw = '../services/middleware.js';
+
 const controller = require('../controllers/user');
 
 router.get('/:username', controller.getUser);

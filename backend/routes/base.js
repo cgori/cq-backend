@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const mw = '../services/middleware.js';
 router.use('*', (req, res, next) => {
     console.log('Time:', Date.now());
 
