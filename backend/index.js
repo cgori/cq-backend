@@ -5,8 +5,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const routes = require('./routes/base');
-const jwt = require('jsonwebtoken');
-const middleware = require('./services/middleware');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
