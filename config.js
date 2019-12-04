@@ -10,7 +10,7 @@ module.exports = {
             useUnifiedTopology: true,
             auth: { authSource: 'admin' },
             user: 'admin',
-            pass: '70MixingOrange',
+            pass: 'OrangeFlow20',
         },
     },
 };
