@@ -8,6 +8,7 @@ const mongoose = require('mongoose'),
     LOCK_TIME = 2 * 60 * 60 * 1000;
 
 const UserSchema = new Schema({
+    userID: Number,
     firstName: String,
     lastName: String,
     email: { type: String, required: true, index: { unique: true } },
