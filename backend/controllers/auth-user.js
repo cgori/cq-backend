@@ -20,11 +20,13 @@ controller.registerUser = async (req, res) => {
 };
 
 controller.loginUser = async (req, res) => {
-    const username = req.body.username,
+    const email = req.body.email,
         password = req.body.password;
+    console.log(email);
 
     try {
-        const auth = await repository.authUser(username, password);
+        const auth = await repository.authUser(email, password);
+        console.log(auth);
         res.json({
             success: true,
             message: 'Authentication successful!',

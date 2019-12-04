@@ -19,12 +19,16 @@ repository.validateUser = async (body) => {
         }
     }
 };
-repository.authUser = async (username, password) => {
-    const foundUser = await repository.getUser(username);
+repository.authUser = async (email, password) => {
+    const foundUser = await repository.getUser(email);
     console.log(foundUser);
-    console.log(foundUser.password);
+    console.log(password, 'vs', foundUser.password);
     if (bcrypt.compareSync(password, foundUser.password)) {
-        const payload = { user: username };
+        const payload = {
+            user: foundUser.username,
+            role: foundUser.role,
+            email: foundUser.email,
+        };
         const options = { expiresIn: '2d' };
         const secret = config;
         const token = jwt.sign(payload, secret, options);
@@ -38,8 +42,8 @@ repository.authUser = async (username, password) => {
     }
 };
 
-repository.getUser = async (userName) => {
-    return User.findOne({ username: userName }).catch((error) => ({ error }));
+repository.getUser = async (userEmail) => {
+    return User.findOne({ email: userEmail }).catch((error) => ({ error }));
 };
 
 module.exports = repository;
