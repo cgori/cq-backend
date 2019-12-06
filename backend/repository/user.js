@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt'),
     SALT_WORK_FACTOR = 10;
 const jwt = require('jsonwebtoken');
 const config = require('../../config').secret;
+
 repository.getUser = async (userName) => {
     return User.findOne({ username: userName }).catch((error) => ({ error }));
 };

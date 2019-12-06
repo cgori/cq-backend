@@ -1,7 +1,7 @@
 const repository = require('../repository/user');
 const controller = {};
 const UserModel = require('../models/user');
-const auth = require('../services/authToken');
+const auth = require('../services/authToken.js');
 // Get user
 controller.getUser = async (req, res) => {
     const user = await repository.getUserByUsername(req.params.username);

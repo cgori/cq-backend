@@ -6,6 +6,6 @@ router.get('/ping', (req, res) => {
 });
 
 router.use('/user', require('./user'));
-router.get('*', (req, res) => res.status(404).json({ error: 'Endpoint not found.' }));
 router.use('/auth', require('./auth-user'));
+router.use('/boardroom', require('./boardroom'));
 module.exports = router;

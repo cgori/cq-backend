@@ -1,7 +1,7 @@
 const express = require('express');
 const config = require('../../config');
 const router = express.Router();
-const protectedRoute = require('../services/authToken');
+const protectedRoute = require('../services/authToken.js');
 const controller = require('../controllers/user');
 const jwt = require('jsonwebtoken');
 

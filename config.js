@@ -1,5 +1,5 @@
 module.exports = {
-    port: 80,
+    port: 3000,
     secret: 'worldisfullofdevelopers',
     db: {
         host: '51.89.139.147',
