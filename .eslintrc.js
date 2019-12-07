@@ -1,22 +1,15 @@
 module.exports = {
-  root: true,
+    root: true,
 
-  env: {
-      es6: true,
-  },
+    env: { es6: true },
 
-  extends: ['prettier', 'plugin:prettier/recommended'],
+    extends: ['prettier', 'plugin:prettier/recommended'],
 
-  plugins: ['prettier'],
+    plugins: ['prettier'],
 
-  rules: {
-      'no-console': 'off',
-  },
-
-    "parserOptions": {
-        "ecmaVersion": 2017
+    rules: {
+        'no-console': 'off',
     },
 
-    
-
-}
+    parserOptions: { ecmaVersion: 9 },
+};

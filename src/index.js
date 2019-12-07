@@ -2,20 +2,20 @@ const config = require('../config');
 
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const app = express();
-const routes = require('./routes/base');
 
-app.use(express.urlencoded({ extended: true }));
+const app = express();
+
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+
+const routes = require('./routes/base');
 app.use('/api', routes);
-app.use(bodyParser.json());
+
 const database = require('./services/mongodb');
 database.connection.once('open', () => start());
 
 const start = () => {
-    config.port = config.port || 3000;
     app.listen(config.port, () => console.log(`Listening on port ${config.port}.`));
 };
