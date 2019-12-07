@@ -8,7 +8,7 @@ const routes = require('./routes/base');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ origin: false }));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api', routes);
 app.use(bodyParser.json());

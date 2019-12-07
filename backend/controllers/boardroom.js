@@ -14,10 +14,8 @@ controller.read = async (req, res) => {
 };
 controller.update = async (req, res) => {
     data = req.body;
-    filter = req.params;
-    // router.patch('/update/boardroom=:boardroomid/poll=:pollid/question=:questionid', controller.update);
     console.log(req.params);
-    const boardroom = await repository.update(data, filter);
+    const boardroom = await repository.update(data, req.params.bID, req.params.pID, req.params.qID);
     res.json(boardroom);
 };
 controller.delete = async (req, res) => {

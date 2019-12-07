@@ -15,7 +15,16 @@ repository.read = async (id) => {
     return boardroom.find({ 'boardroom.id': id });
 };
 
-repository.update = async (data, params) => {};
+repository.update = async (data, bID, pID, qID) => {
+    // boardroom.updateOne({ id: boardroomid, polls: { id: pollid, patient:{ },{ questions: { id: questionid } } } }, {  });
+    console.log(data);
+    bID = parseInt(bID);
+    pID = parseInt(pID);
+    qID = parseInt(qID);
+    console.log(bID, pID, qID);
+    return boardroom.findOne({ id: bID, poll: { id: pID, questions: { id: qID } } });
+    return boardroom.updateOne({ id: bID, poll: { id: pID, questions: { id: qID } } }, { data });
+};
 
 repository.delete = (username) => {};
 
