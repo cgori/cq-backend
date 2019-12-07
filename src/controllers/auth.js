@@ -69,9 +69,9 @@ controller.login = async (req, res, next) => {
     };
 
     if (!data.password)
-        return this.status(400).json({ success: false, message: 'password required.' });
+        return res.status(400).json({ success: false, message: 'password required.' });
     if (!data.email && !data.username)
-        return this.status(400).json({ success: false, message: 'email or username required.' });
+        return res.status(400).json({ success: false, message: 'email or username required.' });
 
     try {
         const user = data.email
