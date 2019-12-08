@@ -1,5 +1,5 @@
 const repository = require('../repository/poll');
-
+const repositoryBoardroom = require('../repository/boardroom');
 const controller = {};
 
 controller.getAllPolls = async (req, res, next) => {
@@ -15,9 +15,14 @@ controller.getPoll = async (req, res, next) => {
 };
 
 controller.createPoll = async (req, res, next) => {
-    const Poll = await repository.createPoll(req.body);
-
-    res.json({ success: true, Poll });
+    try {
+        const Poll = await repository.createPoll(req.body);
+        console.log(req.body.id);
+        const boardroom = await repositoryBoardroom.addPoll(req.params.id, req.body.id);
+        res.json({ success: true, Poll });
+    } catch (error) {
+        return res.status(409).json({ success: false, message: 'Conflict - poll already exists' });
+    }
 };
 
 controller.updatePoll = async (req, res, next) => {

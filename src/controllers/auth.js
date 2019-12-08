@@ -93,7 +93,7 @@ controller.login = async (req, res, next) => {
 
         delete user.password;
 
-        const token = JWT.sign({ ...user }, config.jwt.secret, { expiresIn: 1000 * 60 * 60 * 24 }); // 1 day
+        const token = JWT.sign({ user }, config.jwt.secret, { expiresIn: 1000 * 60 * 60 * 24 }); // 1 day
 
         return res.status(200).json({ success: true, message: 'Authenticated.', token });
     } catch (error) {
