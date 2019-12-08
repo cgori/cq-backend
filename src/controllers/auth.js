@@ -7,7 +7,7 @@ const JWT = require('jsonwebtoken');
 const validator = require('validator');
 
 const controller = {};
-
+//s
 controller.register = async (req, res, next) => {
     const data = {
         email: req.body.email,
