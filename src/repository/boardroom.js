@@ -7,6 +7,7 @@ repository.getAllBoardrooms = () => {
 };
 
 repository.createBoardroom = (data) => {
+    console.log(data);
     return Boardroom.create({ ...data });
 };
 

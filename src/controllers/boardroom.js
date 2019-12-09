@@ -16,12 +16,11 @@ controller.getBoardroom = async (req, res, next) => {
 
 controller.createBoardroom = async (req, res, next) => {
     try {
+        console.log(req.body);
         const boardroom = await repository.createBoardroom(req.body);
         res.json({ success: true, boardroom });
     } catch (error) {
-        return res
-            .status(409)
-            .json({ success: false, message: 'Conflict - boardroom already exists' });
+        return res.status(409).json({ success: false, error: error });
     }
 };
 

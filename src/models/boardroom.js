@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const Boardroom = new mongoose.Schema({
-    id: Number,
+    boardroomID: Number,
     users: [{ id: Number }],
     polls: [{ id: Number }],
 });
