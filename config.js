@@ -4,7 +4,7 @@ module.exports = {
     jwt: { secret: 'worldisfullofdevelopers' },
 
     db: {
-        host: '51.89.139.147',
+        host: '51.89.139.24',
         port: 27017,
         name: 'criticalquestion',
         options: {
