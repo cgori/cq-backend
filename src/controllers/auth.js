@@ -68,7 +68,9 @@ controller.login = async (req, res, next) => {
         email: req.body.email,
         password: req.body.password,
     };
-
+    if (res.body.status === 'pending') {
+        return res.status(400).json({ success: false, message: 'Account status is pending.' });
+    }
     if (!data.password)
         return res.status(400).json({ success: false, message: 'password required.' });
     if (!data.email && !data.username)
