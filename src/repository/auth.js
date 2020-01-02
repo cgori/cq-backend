@@ -15,6 +15,8 @@ repository.hashPassword = (password) => {
 
 repository.authenticateUser = async (email, password) => {
     const foundUser = await repository.getUser(email);
+    console.log(foundUser.status);
+    console.log(foundUser);
     if (bcrypt.compareSync(password, foundUser.password)) {
         if (foundUser.status !== 'pending') {
             const payload = {
