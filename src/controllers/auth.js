@@ -68,9 +68,9 @@ controller.login = async (req, res, next) => {
         email: req.body.email,
         password: req.body.password,
     };
-    if (res.body.status === 'pending') {
-        return res.status(400).json({ success: false, message: 'Account status is pending.' });
-    }
+    // if (res.body.status === 'pending') {
+    //     return res.status(400).json({ success: false, message: 'Account status is pending.' });
+    // }
     if (!data.password)
         return res.status(400).json({ success: false, message: 'password required.' });
     if (!data.email && !data.username)
@@ -81,6 +81,9 @@ controller.login = async (req, res, next) => {
             ? await repository.getUserByEmail(data.email)
             : await repository.getUserByUsername(data.username);
 
+        if (user.status === 'pending') {
+            return res.status(400).json({ success: false, message: 'Account status is pending.' });
+        }
         if (!user && data.email)
             return res
                 .status(400)
