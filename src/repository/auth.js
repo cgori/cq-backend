@@ -26,7 +26,7 @@ repository.authenticateUser = async (email, password) => {
             };
             const options = { expiresIn: '2d' };
             const secret = config;
-            const token = jwt.sign(payload, secret, options);
+            const token = JWT.sign(payload, secret, options);
             console.log(token);
             return token;
         } else {
