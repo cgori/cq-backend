@@ -11,15 +11,18 @@ repository.createPoll = (data) => {
 };
 
 repository.getPoll = (id) => {
-    return Poll.findOne({ id });
+    return Poll.findOne({ pollID: id });
 };
 
 repository.updatePoll = async (id, data) => {
-    return Poll.findByIdAndUpdate({ id }, { ...data });
+    return Poll.findByIdAndUpdate({ pollID: id }, { ...data });
 };
 
 repository.deletePoll = (id) => {
-    return Poll.deleteOne({ id });
+    return Poll.deleteOne({ pollID: id });
+};
+repository.addVote = (pollId, optionId) => {
+    
 };
 
 module.exports = repository;

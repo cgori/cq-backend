@@ -17,7 +17,9 @@ repository.getUserByUsername = (username) => {
 repository.getUserByEmailOrUsername = (email, username) => {
     return User.findOne({ $or: [{ email }, { username }] });
 };
-
+repository.getUserById = (id) => {
+    return Poll.findOne({ userID: id });
+};
 repository.createUser = (data) => {
     return User.create({ ...data });
 };
