@@ -7,11 +7,11 @@ repository.getAllPolls = () => {
 };
 
 repository.createPoll = (data) => {
-    return Poll.create({ ...data });
+    return Poll.create({ data });
 };
 
 repository.getPoll = (id) => {
-    return Poll.findOne({ id });
+    return Poll.findOne({ pollID: id });
 };
 
 repository.updatePoll = async (id, data) => {
