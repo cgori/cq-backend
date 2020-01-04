@@ -12,7 +12,7 @@ repository.createBoardroom = (data) => {
 };
 
 repository.getBoardroom = (id) => {
-    return Boardroom.findOne({ id });
+    return Boardroom.findOne({ boardroomID: id });
 };
 
 repository.updateBoardroom = async (id, data) => {
