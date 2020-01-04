@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const poll = new mongoose.Schema({
     poll: {
-        id: Number,
-        patient: { allergy: String, drugs: String, desc: String },
+        pollID: Number,
+        patient: { allergy: String, drugs: String, age: Number, desc: String },
         title: String,
-        description: String,
+        status: String,
+        desc: String,
         options: [{ title: String, votes: Number }],
     },
 });
