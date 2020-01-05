@@ -6,6 +6,6 @@ mongoose.connect(`mongodb://${config.host}:${config.port}/${config.name}`, confi
 
 mongoose.set('debug', true);
 mongoose.set('useCreateIndex', true);
-mongoose.set('useFindAndModify', true);
+mongoose.set('useFindAndModify', false);
 
 module.exports = mongoose;

@@ -14,9 +14,34 @@ controller.getPoll = async (req, res, next) => {
     res.json({ success: true, Poll });
 };
 
+controller.updateStatus = async (req, res, next) => {
+    try {
+        console.log(req.params.id, req.params.status);
+        const id = req.params.id;
+        const status = req.params.status;
+        const Poll = await repository.updateStatus(id, status);
+        res.json({ success: true, Poll });
+    } catch (error) {
+        console.log(error);
+        return res.status(409).json({ success: false, message: 'Updating status failed.' + error });
+    }
+};
+
+controller.addVote = async (req, res, next) => {
+    try {
+        const Poll = await repository.addVote(req.params.id, req.params.choice);
+        console.log(req.params.id, req.params.choice);
+        res.json({ success: true, Poll });
+    } catch (error) {
+        console.log(error);
+        return res.status(409).json({ success: false, message: 'Updating status failed.' + error });
+    }
+};
+
 controller.createPoll = async (req, res, next) => {
     try {
         const Poll = await repository.createPoll(req.body);
+        console.log(req.body);
         console.log(req.body.id);
         const boardroom = await repositoryBoardroom.addPoll(req.params.id, req.body.id);
         res.json({ success: true, Poll });

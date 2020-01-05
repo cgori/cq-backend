@@ -6,6 +6,7 @@ const poll = new mongoose.Schema({
     title: String,
     description: String,
     options: [{ title: String, votes: Number }],
+    status: String,
 });
 
 module.exports = mongoose.model('poll', poll, 'poll');

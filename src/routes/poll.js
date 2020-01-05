@@ -9,5 +9,7 @@ router.post('/:id', controller.createPoll); //give boardroom id
 router.get('/:id', controller.getPoll);
 router.patch('/:id', controller.updatePoll);
 router.delete('/:id', controller.deletePoll);
+router.patch('/:id/:status', controller.updateStatus);
+router.patch('/add/:id/:choice', controller.addVote);
 
 module.exports = router;
