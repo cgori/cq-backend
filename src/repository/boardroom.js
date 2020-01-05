@@ -6,9 +6,15 @@ repository.getAllBoardrooms = () => {
     return Boardroom.find({});
 };
 
+repository.getBoardroomPolls = () => {};
+
 repository.createBoardroom = (data) => {
     console.log(data);
     return Boardroom.create({ ...data });
+};
+
+repository.addUser = (bID, data) => {
+    return Boardroom.findOneAndUpdate({ title: bID }, { $addToSet: { users: data.username } });
 };
 
 repository.getBoardroom = (id) => {
@@ -24,7 +30,8 @@ repository.deleteBoardroom = (id) => {
 };
 
 repository.addPoll = async (boardroomID, data) => {
-    return Boardroom.findOneAndUpdate({ title: boardroomID }, { $push: { polls: { ...data } } });
+    console.log(data);
+    return Boardroom.findOneAndUpdate({ title: boardroomID }, { $addToSet: { polls: data } });
 };
 
 module.exports = repository;

@@ -7,11 +7,16 @@ repository.getAllPolls = () => {
 };
 
 repository.createPoll = (data) => {
+    console.log(data);
     return Poll.create({ ...data });
 };
 
 repository.getPoll = (id) => {
     return Poll.findOne({ pollID: id });
+};
+
+repository.getPoll = (list) => {
+    console.log(list);
 };
 
 repository.updateStatus = (id, data) => {

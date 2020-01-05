@@ -52,12 +52,13 @@ controller.addVote = async (req, res, next) => {
 controller.createPoll = async (req, res, next) => {
     try {
         const Poll = await repository.createPoll(req.body);
-        console.log(req.body);
-        console.log(req.body.id);
-        const boardroom = await repositoryBoardroom.addPoll(req.params.id, req.body.id);
-        res.json({ success: true, Poll });
+        console.log(req.params.id);
+        console.log(req.body.pollID);
+        console.log('HEREEEEEEEEEEEEEEEEEEEEEEEEEE');
+        const boardroom = await repositoryBoardroom.addPoll(req.params.id, req.body.pollID);
+        res.json({ success: true, Poll, boardroom });
     } catch (error) {
-        return res.status(409).json({ success: false, message: 'Conflict - poll already exists' });
+        return res.status(409).json({ success: false, message: error.message });
     }
 };
 

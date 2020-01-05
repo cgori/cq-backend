@@ -1,4 +1,5 @@
 const repository = require('../repository/boardroom');
+const Poll = require('../repository/poll');
 
 const controller = {};
 
@@ -8,11 +9,22 @@ controller.getAllBoardrooms = async (req, res, next) => {
     res.json({ success: true, boardrooms });
 };
 
-controller.getBoardroom = async (req, res, next) => {
-    console.log(req.params.id);
-    const boardroom = await repository.getBoardroom(req.params.id);
+controller.addUser = async (req, res, next) => {
+    const boardrooms = await repository.addUser(req.params.id, req.body);
 
-    res.json({ success: true, boardroom });
+    res.json({ success: true, boardrooms });
+};
+
+controller.getBoardroomPolls = async (req, res, next) => {
+    const boardrooms = await repository.getBoardroomPolls();
+
+    res.json({ success: true, boardrooms });
+};
+
+controller.getBoardroom = async (req, res, next) => {
+    const boardroom = await repository.getBoardroom(req.body.id);
+    const polls = await Poll.getPolls(boardroom.polls);
+    res.json({ success: true, boardroom, polls });
 };
 
 controller.createBoardroom = async (req, res, next) => {
