@@ -27,6 +27,17 @@ controller.updateStatus = async (req, res, next) => {
     }
 };
 
+controller.findPoll = async (req, res, next) => {
+    try {
+        console.log(req.params.pID, req.params.qID);
+        const Poll = await repository.findPoll(req.params.pID, req.params.qID);
+        res.json({ success: true, Poll });
+    } catch (error) {
+        console.log(error);
+        return res.status(409).json({ success: false, message: 'Updating status failed.' + error });
+    }
+};
+
 controller.addVote = async (req, res, next) => {
     try {
         const Poll = await repository.addVote(req.params.id, req.params.choice);

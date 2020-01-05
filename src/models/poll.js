@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const poll = new mongoose.Schema({
-    pollID: Number,
-    patient: { allergy: String, drugs: String, desc: String },
+    pollID: { required: true, type: Number, unique: true },
+    patient: { allergy: String, drugs: String, desc: String, age: Number },
     title: String,
     description: String,
-    options: [{ title: String, votes: Number }],
+    options: [{ optionID: { required: true, type: Number }, title: String, votes: Number }],
     status: String,
 });
 

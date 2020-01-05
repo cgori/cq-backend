@@ -9,6 +9,7 @@ controller.getAllBoardrooms = async (req, res, next) => {
 };
 
 controller.getBoardroom = async (req, res, next) => {
+    console.log(req.params.id);
     const boardroom = await repository.getBoardroom(req.params.id);
 
     res.json({ success: true, boardroom });
@@ -30,8 +31,24 @@ controller.updateBoardroom = async (req, res, next) => {
     res.json({ success: true, boardroom });
 };
 
+controller.addVote = async (req, res, next) => {
+    try {
+        const Poll = await repository.addVote(req.params.bID, req.params.pID, req.params.choice);
+        console.log(req.params.bID, req.params.pID, req.params.choice);
+        res.json({ success: true, Poll });
+    } catch (error) {
+        console.log(error);
+        return res.status(409).json({ success: false, message: 'Updating status failed.' + error });
+    }
+};
 controller.deleteBoardroom = async (req, res, next) => {
     const boardroom = await repository.deleteBoardroom(req.params.id);
+
+    res.json({ success: true });
+};
+
+controller.addPoll = async (req, res, next) => {
+    const boardroom = await repository.addPoll(req.params.id, req.body);
 
     res.json({ success: true });
 };

@@ -20,7 +20,24 @@ repository.updateStatus = (id, data) => {
 };
 
 repository.addVote = (id, choice) => {
-    return Poll.findOneAndUpdate({ pollID: id }, { options: { 0: { votes: 2 } } });
+    console.log(choice);
+    return Poll.findOneAndUpdate(
+        { pollID: id, 'options.optionID': { $eq: choice } },
+        { $inc: { 'options.$.votes': 1 } }
+    );
+};
+
+repository.checkVote = (id, choice) => {
+    console.log(choice);
+    return Poll.findOneAndUpdate(
+        { pollID: id, 'options.optionID': { $eq: choice } },
+        { $inc: { 'options.$.votes': 1 } }
+    );
+};
+
+repository.findPoll = (id, choice) => {
+    console.log(choice);
+    return Poll.find({ pollID: id, options: { optionID: choice } });
 };
 
 repository.updatePoll = async (id, data) => {
