@@ -15,8 +15,8 @@ repository.getPoll = (id) => {
     return Poll.findOne({ pollID: id });
 };
 
-repository.getPoll = (list) => {
-    console.log(list);
+repository.getPolls = (polls) => {
+    return Poll.find({ pollID: { $in: polls } });
 };
 
 repository.updateStatus = (id, data) => {
