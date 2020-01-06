@@ -16,7 +16,7 @@ repository.getPoll = (id) => {
 };
 
 repository.getPolls = (polls) => {
-    return Poll.find({ pollID: { $in: polls } });
+    return Poll.find({ _id: { $in: polls } });
 };
 
 repository.updateStatus = (id, data) => {

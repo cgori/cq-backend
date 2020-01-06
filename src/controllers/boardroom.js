@@ -23,13 +23,13 @@ controller.getBoardroomPolls = async (req, res, next) => {
 
 controller.getBoardroom = async (req, res, next) => {
     const boardroom = await repository.getBoardroom(req.params.id);
-    console.log(boardroom);
+    console.log(boardroom['polls']);
     const polls = await Poll.getPolls(boardroom['polls']);
     res.json({ success: true, boardroom, polls });
 };
 controller.getBoardroombyID = async (req, res, next) => {
     const boardroom = await repository.getBoardroom(req.body.id);
-    console.log(boardroom);
+    console.log(boardroom['polls']);
     const polls = await Poll.getPolls(boardroom['polls']);
     res.json({ success: true, boardroom, polls });
 };

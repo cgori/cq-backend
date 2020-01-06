@@ -51,7 +51,6 @@ controller.addVote = async (req, res, next) => {
 controller.createPoll = async (req, res, next) => {
     try {
         const Poll = await repository.createPoll();
-        const id = Poll._id;
         const boardroom = await repositoryBoardroom.addPoll(req.params.bID, id);
         res.json({ success: true, Poll, boardroom });
     } catch (error) {
