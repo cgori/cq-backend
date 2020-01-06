@@ -68,6 +68,8 @@ controller.deleteBoardroom = async (req, res, next) => {
 
 controller.addPoll = async (req, res, next) => {
     const boardroom = await repository.addPoll(req.params.bID, req.params.pID);
+    console.log(typeof req.params.bID);
+    console.log(typeof req.params.pID);
 
     res.json({ success: true });
 };
