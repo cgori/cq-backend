@@ -1,6 +1,6 @@
 const repository = require('../repository/boardroom');
 const Poll = require('../repository/poll');
-
+const ObjectId = require('mongodb').ObjectID;
 const controller = {};
 
 controller.getAllBoardrooms = async (req, res, next) => {
@@ -67,9 +67,8 @@ controller.deleteBoardroom = async (req, res, next) => {
 };
 
 controller.addPoll = async (req, res, next) => {
+    ObjectId(bID);
     const boardroom = await repository.addPoll(req.params.bID, req.params.pID);
-    console.log(typeof req.params.bID);
-    console.log(typeof req.params.pID);
 
     res.json({ success: true });
 };
