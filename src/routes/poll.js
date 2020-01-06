@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', controller.getAllPolls);
 router.get('/find/:pID/:qID', controller.findPoll);
-router.post('/:id', controller.createPoll); //give boardroom id
+router.post('/:bID', controller.createPoll);
 router.get('/:id', controller.getPoll);
 router.patch('/:id', controller.updatePoll);
 router.delete('/:id', controller.deletePoll);

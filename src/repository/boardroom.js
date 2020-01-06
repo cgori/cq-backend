@@ -13,12 +13,12 @@ repository.createBoardroom = (data) => {
     return Boardroom.create({ ...data });
 };
 
-repository.addUser = (bID, data) => {
-    return Boardroom.findOneAndUpdate({ title: bID }, { $addToSet: { users: data.username } });
+repository.addUser = (uID, bID) => {
+    return Boardroom.findOneAndUpdate({ _id: bID }, { $addToSet: { users: uID } });
 };
 
 repository.getBoardroom = (id) => {
-    return Boardroom.findOne({ title: id });
+    return Boardroom.findById(id);
 };
 
 repository.updateBoardroom = async (id, data) => {
@@ -29,9 +29,9 @@ repository.deleteBoardroom = (id) => {
     return Boardroom.deleteOne({ title: id });
 };
 
-repository.addPoll = async (boardroomID, data) => {
+repository.addPoll = async (bID, pID) => {
     console.log(data);
-    return Boardroom.findOneAndUpdate({ title: boardroomID }, { $addToSet: { polls: data } });
+    return Boardroom.findOneAndUpdate({ _id: bID }, { $addToSet: { polls: pID } });
 };
 
 module.exports = repository;

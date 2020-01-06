@@ -10,7 +10,7 @@ controller.getAllBoardrooms = async (req, res, next) => {
 };
 
 controller.addUser = async (req, res, next) => {
-    const boardrooms = await repository.addUser(req.params.id, req.body);
+    const boardrooms = await repository.addUser(req.params.uID, req.params.bID);
 
     res.json({ success: true, boardrooms });
 };
@@ -23,6 +23,12 @@ controller.getBoardroomPolls = async (req, res, next) => {
 
 controller.getBoardroom = async (req, res, next) => {
     const boardroom = await repository.getBoardroom(req.params.id);
+    console.log(boardroom);
+    const polls = await Poll.getPolls(boardroom['polls']);
+    res.json({ success: true, boardroom, polls });
+};
+controller.getBoardroombyID = async (req, res, next) => {
+    const boardroom = await repository.getBoardroom(req.body.id);
     console.log(boardroom);
     const polls = await Poll.getPolls(boardroom['polls']);
     res.json({ success: true, boardroom, polls });

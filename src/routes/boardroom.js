@@ -11,6 +11,8 @@ router.get('/:id', controller.getBoardroom);
 router.patch('/:id', controller.updateBoardroom);
 router.patch('/:id/poll', controller.addPoll);
 router.delete('/:id', controller.deleteBoardroom);
-router.post('/user/:id', controller.addUser);
+router.post('/:bID/:uID', controller.addUser);
+
+router.get('/id', controller.getBoardroombyID);
 
 module.exports = router;

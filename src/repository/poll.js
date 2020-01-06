@@ -1,5 +1,5 @@
 const Poll = require('../models/poll');
-
+const mongoose = require('mongoose');
 const repository = {};
 
 repository.getAllPolls = () => {
@@ -12,7 +12,7 @@ repository.createPoll = (data) => {
 };
 
 repository.getPoll = (id) => {
-    return Poll.findOne({ pollID: id });
+    return Poll.findById(id);
 };
 
 repository.getPolls = (polls) => {
@@ -21,21 +21,13 @@ repository.getPolls = (polls) => {
 
 repository.updateStatus = (id, data) => {
     console.log(id, data);
-    return Poll.findOneAndUpdate({ pollID: id }, { status: data });
+    return Poll.findById({ id }, { status: data });
 };
 
 repository.addVote = (id, choice) => {
     console.log(choice);
     return Poll.findOneAndUpdate(
-        { pollID: id, 'options.optionID': { $eq: choice } },
-        { $inc: { 'options.$.votes': 1 } }
-    );
-};
-
-repository.checkVote = (id, choice) => {
-    console.log(choice);
-    return Poll.findOneAndUpdate(
-        { pollID: id, 'options.optionID': { $eq: choice } },
+        { _id: mongoose.Types.ObjectId(id), options: { _id: mongoose.Types.ObjectId(choice) } },
         { $inc: { 'options.$.votes': 1 } }
     );
 };
