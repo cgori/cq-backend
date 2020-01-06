@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Boardroom = new mongoose.Schema({
     title: { required: true, type: String, index: { unique: true } },
-    users: [{ type: String }],
+    users: [String],
     polls: [String],
 });
 

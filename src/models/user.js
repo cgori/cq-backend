@@ -13,7 +13,6 @@ const UserSchema = new mongoose.Schema({
     status: { type: String, required: true },
 });
 
-// this = user document
 UserSchema.pre('save', function(next) {
     if (this.isModified('password')) this.password = util.hashPassword(this.password);
 
