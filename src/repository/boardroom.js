@@ -1,4 +1,5 @@
 const Boardroom = require('../models/boardroom');
+const Poll = require('../models/poll');
 
 const repository = {};
 
@@ -29,8 +30,7 @@ repository.deleteBoardroom = (id) => {
     return Boardroom.deleteOne({ title: id });
 };
 
-repository.addPoll = async (bID, pID) => {
-    console.log(data);
+repository.addPoll = (bID, pID) => {
     return Boardroom.findOneAndUpdate({ _id: bID }, { $addToSet: { polls: pID } });
 };
 

@@ -50,14 +50,25 @@ controller.addVote = async (req, res, next) => {
 
 controller.createPoll = async (req, res, next) => {
     try {
-        const Poll = await repository.createPoll();
-        const boardroom = await repositoryBoardroom.addPoll(req.params.bID, id);
-        res.json({ success: true, Poll, boardroom });
+        const Poll = await repository.createPoll(req.body);
+        res.json({ success: true, Poll });
     } catch (error) {
         return res.status(409).json({ success: false, message: error.message });
     }
 };
 
+controller.createPollBoardRoom = async (req, res, next) => {
+    try {
+        const Poll = controller.createPoll;
+        const id = Poll;
+        console.log(id);
+        const boardroom = await repositoryBoardroom.addPoll(req.params.bID, id);
+
+        res.json({ success: true, Poll, boardroom });
+    } catch (error) {
+        return res.status(409).json({ success: false, message: error.message });
+    }
+};
 controller.updatePoll = async (req, res, next) => {
     const Poll = await repository.updatePoll(req.params.id, req.body);
 
