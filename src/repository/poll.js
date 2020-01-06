@@ -1,7 +1,7 @@
 const Poll = require('../models/poll');
 const mongoose = require('mongoose');
 const repository = {};
-
+const ObjectId = require('mongoose').Types.ObjectId;
 repository.getAllPolls = () => {
     return Poll.find({});
 };
@@ -24,12 +24,16 @@ repository.updateStatus = (id, data) => {
     return Poll.findById({ id }, { status: data });
 };
 
-repository.addVote = (id, choice) => {
-    console.log(choice);
-    return Poll.findOneAndUpdate(
-        { _id: mongoose.Types.ObjectId(id), options: { _id: mongoose.Types.ObjectId(choice) } },
-        { $inc: { 'options.$.votes': 1 } }
-    );
+repository.addVote = async (id, choice) => {
+    const poll = await Poll.findOne({ _id: ObjectId(id) });
+
+    const options = poll.options.map((option) => {
+        if (option._id.toString() === choice) option.votes++;
+
+        return option;
+    });
+
+    return Poll.findOneAndUpdate({ _id: ObjectId(id) }, { options }, { new: true });
 };
 
 repository.findPoll = (id, choice) => {
