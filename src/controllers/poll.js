@@ -42,7 +42,11 @@ controller.addVote = async (req, res, next) => {
     try {
         const Poll = await repository.addVote(req.params.user, req.params.id, req.params.choice);
         if (Poll === false) {
-            res.json({ success: false, messsage: 'User already voted', user: req.params.user });
+            res.status(400).json({
+                success: false,
+                messsage: 'User already voted',
+                user: req.params.user,
+            });
         } else {
             res.json({ success: true, Poll });
         }

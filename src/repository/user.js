@@ -31,5 +31,8 @@ repository.updateUser = (username, data) => {
 repository.deleteUser = (username) => {
     return User.deleteOne({ username });
 };
+repository.changePassword = (username) => {
+    return User.deleteOne({ username });
+};
 
 module.exports = repository;
