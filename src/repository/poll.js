@@ -24,14 +24,24 @@ repository.updateStatus = (id, data) => {
     return Poll.findById({ id }, { status: data });
 };
 
-repository.addVote = async (id, choice) => {
+repository.addVote = async (user, id, choice) => {
     const poll = await Poll.findOne({ _id: ObjectId(id) });
+
+    for (let i = 0; i < poll.votedUsers.length; i++) {
+        if (poll.votedUsers[i] === user) {
+            return false;
+        }
+    }
 
     const options = poll.options.map((option) => {
         if (option._id.toString() === choice) option.votes++;
 
         return option;
     });
+    const adduser = await Poll.findOneAndUpdate(
+        { _id: ObjectId(id) },
+        { $push: { votedUsers: user } }
+    );
 
     return Poll.findOneAndUpdate({ _id: ObjectId(id) }, { options }, { new: true });
 };
